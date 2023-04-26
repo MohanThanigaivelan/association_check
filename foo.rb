@@ -18,7 +18,7 @@ end
 class Account < ActiveRecord::Base
 end
 class Vpc < ActiveRecord::Base
-  has_many :accounts , foreign_key: :id, primary_key:  :vpc_id
+  belongs_to :account , primary_key: :id, foreign_key:  :vpc_id
 end
 
 # Data creation
@@ -26,4 +26,4 @@ Account.create(id: "first", name: 'xxx')
 vpc = Vpc.create(vpc_id: "first")
 
 # Fetch records through association
-pp vpc.accounts # Executes SELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 'first'
+pp vpc.account # Executes SELECT "accounts".* FROM "accounts" WHERE "accounts"."id" = 'first'
